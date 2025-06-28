@@ -1,13 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\KategoriController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('kategori', KategoriController::class);
+Route::resource('pesanan', PesananController::class);
 
-
-Route::resource(('Pesanan'), 'App\Http\Controllers\PesananController');
+Route::get ('/dashboard', function () {
+    return view('dashboard', [HomeController::class, 'index']) ->name('dashboard');
+});
